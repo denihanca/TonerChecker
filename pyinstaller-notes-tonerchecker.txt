@@ -1,0 +1,1 @@
+pyinstaller tonerchecker36.spec tonerchecker.py --icon=36.ico

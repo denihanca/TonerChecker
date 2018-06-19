@@ -70,7 +70,7 @@ for key,value in printersColor.items():
         awChecker = False
         
         #BLACK
-        trScr = WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//table[@bgcolor='#E3E7F1']/tbody/tr[4]")))
+        trScr = WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//body/table[2]//table[@bgcolor='#E3E7F1']/tbody/tr[4]")))
         trBN = int(filter(unicode.isdecimal,trScr.text))
         trColor = "BLACK"
         if trBN <= 25:
@@ -84,7 +84,7 @@ for key,value in printersColor.items():
                 awChecker = False
 
         #CYAN
-        trScr = WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//table[@bgcolor='#E3E7F1']/tbody/tr[6]")))
+        trScr = WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//body/table[2]//table[@bgcolor='#E3E7F1']/tbody/tr[6]")))
         trBN = int(filter(unicode.isdecimal,trScr.text))
         trColor = "CYAN"
         if trBN <= 25:
@@ -98,7 +98,7 @@ for key,value in printersColor.items():
                 awChecker = False
             
         #MAGENTA
-        trScr = WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//table[@bgcolor='#E3E7F1']/tbody/tr[8]")))
+        trScr = WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//body/table[2]//table[@bgcolor='#E3E7F1']/tbody/tr[8]")))
         trBN = int(filter(unicode.isdecimal,trScr.text))
         trColor = "MAGENTA"
         if trBN <= 25:
@@ -112,7 +112,7 @@ for key,value in printersColor.items():
                 awChecker = False
 
         #YELLOW
-        trScr = WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//table[@bgcolor='#E3E7F1']/tbody/tr[10]")))
+        trScr = WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//body/table[2]//table[@bgcolor='#E3E7F1']/tbody/tr[10]")))
         trBN = int(filter(unicode.isdecimal,trScr.text))
         trColor = "YELLOW"
         if trBN <= 25:
@@ -124,6 +124,17 @@ for key,value in printersColor.items():
             else:
                 print "prewarning,"
                 awChecker = False
+
+        #WASTE
+        trScr = WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//body/table[4]//table[@bgcolor='#E3E7F1']/tbody/tr[4]")))
+        trColor = "WASTE"
+        #check if reorder status has shown up
+        if "Reorder" in trScr.text:
+                print "Please Reorder "+trColor+" toner"
+                awChecker = True
+        else:
+                awChecker = False
+
 
         if awChecker == False:
                 print "no action needed"
@@ -138,6 +149,7 @@ for key,value in printersColor.items():
                 impBWCopy = int(WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH,"//table[@bgcolor='#E3E7F1']/tbody/tr[9]/td[2]"))).text)
                 impTot = impColPrint + impColCopy + impBWPrint + impBWCopy
                 print "Total Impression: " + str(impTot)
+                print "KOMPAK's phone number: 021 8067 5000"
 			
     except TimeoutException:
         print awHeadIP+key+" cannot be reached. Please check manually."
